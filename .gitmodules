@@ -1,0 +1,7 @@
+[submodule "WePOINTS"]
+	path = WePOINTS
+	url = https://github.com/WePOINTS/WePOINTS.git
+[submodule "sglang"]
+	path = sglang
+	url = git@github.com:ninehills/sglang.git
+	branch = pr-9651
