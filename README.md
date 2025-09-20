@@ -93,11 +93,36 @@ python3 -m sglang.launch_server \
 
 ## 微调
 
-下载 OmniDocBench 数据集
 ```bash
-hf download --repo-type dataset opendatalab/OmniDocBench --local-dir models/OmniDocBench
+pip install accelerate trl
+
+# 单卡Lora训练（24G显卡），训练vision_projector和llm部分。
+python train_wepoints.py \
+    --model_name_or_path "models/POINTS-Reader" \
+    --dataset_name "axolotl-ai-co/llava-instruct-mix-vsft-small" \
+    --per_device_train_batch_size 1 \
+    --gradient_accumulation_steps 4 \
+    --output_dir ./pointsv15-sft-lora-output \
+    --learning_rate 1e-4 \
+    --num_train_epochs 1 \
+    --logging_steps 1 \
+    --do_eval True \
+    --eval_strategy "steps" \
+    --eval_steps 30 \
+    --save_strategy "steps" \
+    --save_steps 30 \
+    --bf16 True \
+    --use_peft \
+    --lora_r 64 \
+    --lora_alpha 128 \
+    --lora_target_modules "q_proj,k_proj,v_proj,o_proj,gate_proj,up_proj,down_proj,vision_projector.mlp.0,vision_projector.mlp.2" \
+    --warmup_ratio 0.1 \
+    --lr_scheduler_type cosine \
+    --weight_decay 0.01 \
+    --gradient_checkpointing True \
+    --only_one_turn False
 ```
 
-```bash
-pip install accelerate trl deepspeed
-```
+![](./train.png)
+
+自定义的数据集需要处理为 `axolotl-ai-co/llava-instruct-mix-vsft-small` 相同格式，注意user prompt 和 inference.py 中相同。
