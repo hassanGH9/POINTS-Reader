@@ -15,8 +15,8 @@ Example Usage (Single GPU with LoRA):
 python train_wepoints.py \
     --model_name_or_path "models/POINTS-Reader" \
     --dataset_name "axolotl-ai-co/llava-instruct-mix-vsft-small" \
-    --per_device_train_batch_size 2 \
-    --gradient_accumulation_steps 2 \
+    --per_device_train_batch_size 1 \
+    --gradient_accumulation_steps 4 \
     --output_dir ./pointsv15-sft-lora-output \
     --learning_rate 1e-4 \
     --num_train_epochs 1 \
@@ -372,8 +372,8 @@ def main():
 
     try:
         # Load both train and validation splits
-        raw_train_dataset = load_dataset(script_args.dataset_name, split="train")
-        raw_val_dataset = load_dataset(script_args.dataset_name, split="test")
+        raw_train_dataset = load_dataset(script_args.dataset_name, split="train").shuffle(seed=42).select(range(500))
+        raw_val_dataset = load_dataset(script_args.dataset_name, split="test").shuffle(seed=42).select(range(50))
         print(f"Train dataset loaded successfully: {len(raw_train_dataset)} examples")
         print(f"Validation dataset loaded successfully: {len(raw_val_dataset)} examples")
 
@@ -491,11 +491,6 @@ def main():
     # 4. Initialize Trainer
     training_args.remove_unused_columns = False # MUST be False to keep pixel_values etc.
     training_args.dataset_text_field = "input_ids"  # Set in config instead of trainer
-
-    # Configure evaluation settings
-    training_args.evaluation_strategy = "steps"
-    training_args.eval_steps = 10
-    training_args.do_eval = True
 
     # Get and fix PEFT config
     peft_config = get_peft_config(model_args)
